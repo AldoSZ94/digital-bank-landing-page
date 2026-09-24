@@ -1,15 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import iconClose from "../../assets/img/icon-close.svg";
 import iconHamburger from "../../assets/img/icon-hamburger.svg";
 import logoDark from "../../assets/img/logo-dark.svg";
 import { MainButton } from "../common/MainButton";
 
 export const Header = () => {
+  // Estado para controlar la apertura/cierre del menú móvil.
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleClickMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    // Detecta si la pantalla mide 480px o más.
+    const mediaQuery = window.matchMedia("(min-width: 480px)");
+
+    // Cierra el menú en pantallas de 480px o más.
+    const handleResize = () => {
+      if (mediaQuery.matches) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    // Comprueba el tamaño inicial.
+    handleResize();
+
+    // Escucha cuando cambia el breakpoint.
+    mediaQuery.addEventListener("change", handleResize);
+
+    // Elimina el listener al desmontar.
+    return () => {
+      mediaQuery.removeEventListener("change", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Bloquea el scroll cuando el menú está abierto
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+
+    // Restaura el scroll al limpiar el efecto
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
 
   const navLinks = [
     { text: "Home", href: "#" },
@@ -28,9 +62,9 @@ export const Header = () => {
         <nav
           className={`absolute top-full z-20 mt-4 w-full rounded-md bg-white py-6 transition-all duration-300 ${
             isMenuOpen
-              ? "scale-100 opacity-100"
+              ? "pointer-events-auto scale-100 opacity-100"
               : "pointer-events-none scale-95 opacity-0"
-          } min-[480px]:static min-[480px]:mt-0 min-[480px]:block min-[480px]:w-auto min-[480px]:scale-100 min-[480px]:py-0 min-[480px]:opacity-100`}
+          } min-[480px]:pointer-events-auto min-[480px]:static min-[480px]:mt-0 min-[480px]:block min-[480px]:w-auto min-[480px]:scale-100 min-[480px]:py-0 min-[480px]:opacity-100`}
           id="navigation"
           aria-label="Main navigation"
         >
@@ -63,8 +97,11 @@ export const Header = () => {
       </div>
       {/* Overlay */}
       <div
+        onClick={() => setIsMenuOpen(false)}
         className={`fixed inset-0 z-10 bg-black/30 transition-opacity duration-300 ${
-          isMenuOpen ? "opacity-100" : "opacity-0"
+          isMenuOpen
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
         } min-[480px]:opacity-0`}
       ></div>
     </header>
