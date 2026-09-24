@@ -60,7 +60,7 @@ export const Header = () => {
           <img className="w-50" src={logoDark} alt="" />
         </a>
         <nav
-          className={`absolute top-full z-20 mt-4 w-full rounded-md bg-white py-6 transition-all duration-300 ${
+          className={`absolute top-full z-20 mt-4 w-full rounded-md bg-white py-6 transition-all duration-300 md:h-full ${
             isMenuOpen
               ? "pointer-events-auto scale-100 opacity-100"
               : "pointer-events-none scale-95 opacity-0"

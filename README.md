@@ -16,7 +16,7 @@ El proyecto fue desarrollado utilizando **React y TypeScript**, aplicando una ar
 
 La interfaz utiliza un enfoque **Mobile-First** y adapta su distribución a diferentes tamaños de pantalla mediante las utilidades responsive de Tailwind CSS.
 
-Además, se implementó un menú de navegación responsive que permite mostrar y ocultar la navegación en dispositivos pequeños.
+Además, se implementó un menú de navegación responsive que permite mostrar y ocultar la navegación en dispositivos pequeños, utilizando estado con `useState` y efectos secundarios con `useEffect`.
 
 ---
 
@@ -46,6 +46,9 @@ Además, se implementó un menú de navegación responsive que permite mostrar y
 - 🧩 Componentes reutilizables
 - 📋 Renderizado dinámico de características y artículos mediante arrays tipados
 - 🍔 Menú de navegación responsive para dispositivos móviles
+- ⚙️ Uso de `useEffect` para gestionar efectos secundarios relacionados con el menú responsive
+- 🔄 Detección de cambios en el viewport mediante `matchMedia` y eventos de cambio de breakpoint
+- 🔒 Bloqueo del scroll de la página cuando el menú móvil está abierto
 - ♿ Uso de atributos ARIA para mejorar la accesibilidad de elementos interactivos
 - 🖼️ Adaptación de imágenes para diferentes tamaños de pantalla mediante `<picture>`
 - 📐 Layouts responsive utilizando CSS Grid y Flexbox
@@ -62,6 +65,14 @@ El proyecto organiza la interfaz mediante diferentes componentes de React:
 Contiene el logo, navegación principal, botón de solicitud de invitación y menú responsive para dispositivos pequeños.
 
 El estado del menú se controla mediante el hook `useState` de React.
+
+Además, se utiliza el hook `useEffect` para gestionar efectos secundarios relacionados con el comportamiento responsive del menú.
+
+Uno de los efectos utiliza `window.matchMedia()` para detectar cuando el viewport alcanza el breakpoint de `480px` y cerrar automáticamente el menú móvil.
+
+También se utiliza `useEffect` para bloquear el scroll del documento mientras el menú móvil está abierto y restaurarlo cuando el menú se cierra.
+
+Los efectos incluyen funciones de limpieza mediante `return`, utilizadas para eliminar listeners y restaurar el estado original del documento.
 
 ### Hero
 
@@ -150,6 +161,12 @@ Durante este proyecto reforcé conceptos relacionados con:
 - Desarrollo de interfaces utilizando React
 - Uso de componentes reutilizables
 - Manejo del estado con `useState`
+- Uso de efectos secundarios con `useEffect`
+- Uso de dependencias en `useEffect`
+- Implementación de funciones de limpieza (`cleanup`) en efectos
+- Uso de listeners para detectar cambios en el viewport
+- Uso de `window.matchMedia()` para trabajar con breakpoints desde JavaScript
+- Bloqueo y restauración del scroll mediante efectos secundarios
 - Uso de props para crear componentes configurables
 - Tipado de datos mediante interfaces de TypeScript
 - Renderizado dinámico utilizando `map()`
@@ -176,12 +193,13 @@ https://www.frontendmentor.io/
 ## 👨‍💻 Autor
 
 Desarrollado por **Aldo Sandoval Zepeda**
+
 _(Frontend Developer en formación con enfoque en desarrollo de interfaces modernas y responsivas.)_
 
 ---
 
 ## ⭐ Notas finales
 
-Este proyecto forma parte de mi portafolio y demuestra habilidades en desarrollo frontend utilizando **React, TypeScript y Tailwind CSS**, así como conocimientos en creación de componentes reutilizables, manejo de estado, tipado de datos, diseño responsive, accesibilidad y organización de proyectos.
+Este proyecto forma parte de mi portafolio y demuestra habilidades en desarrollo frontend utilizando **React, TypeScript y Tailwind CSS**, así como conocimientos en creación de componentes reutilizables, manejo de estado, efectos secundarios, tipado de datos, diseño responsive, accesibilidad y organización de proyectos.
 
 El proyecto busca representar una landing page moderna para una plataforma de banca digital, manteniendo una estructura de código organizada y orientada a la reutilización de componentes.
