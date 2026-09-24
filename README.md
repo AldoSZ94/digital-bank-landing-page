@@ -22,7 +22,7 @@ Además, se implementó un menú de navegación responsive que permite mostrar y
 
 ## 🚀 Demo
 
-👉 _Pendiente de publicación._
+👉 https://digital-bank-landing-page-aldosz94.netlify.app/
 
 ---
 
@@ -186,7 +186,7 @@ Proyecto basado en el reto de Frontend Mentor:
 
 **Digitalbank Landing Page**
 
-https://www.frontendmentor.io/
+https://www.frontendmentor.io/challenges/digital-bank-landing-page-WaUhkoDN
 
 ---
 
